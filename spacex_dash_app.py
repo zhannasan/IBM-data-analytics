@@ -66,11 +66,12 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
 def get_pie_chart(entered_site, entered_payload):
     if entered_site == 'ALL':
         all_data = spacex_df.groupby('Launch Site')['class'].mean().reset_index()
+        scatter_df=spacex_df[spacex_df['Payload Mass (kg)'].between(entered_payload[0],entered_payload[1])]
 
         pie_plot = px.pie(all_data, values='class', 
                         names=all_data['Launch Site'], 
                         title='Total success launches by site')
-        scatter_plot= px.scatter(spacex_df, x=spacex_df['Payload Mass (kg)'], y=spacex_df['class'],color=spacex_df['Booster Version'],  hover_name=spacex_df['Booster Version'])
+        scatter_plot= px.scatter(scatter_df, x=scatter_df['Payload Mass (kg)'], y=scatter_df['class'],color=scatter_df['Booster Version'],  hover_name=scatter_df['Booster Version'])
         scatter_plot.update_layout(title='Correlation between payload and success for all sites', xaxis_title='Payload Mass (kg)', yaxis_title='Class')
         return [pie_plot,scatter_plot]
     else:
