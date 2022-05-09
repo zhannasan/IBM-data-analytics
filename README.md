@@ -12,3 +12,5 @@
 7. Dataviz with an interactive Dashboard
 ### Machine Learning
 8. Predictive Analisys (Logistic Regression, Support Vector Machine, Decision Tree, K-Nearest Neighbour)
+
+Use [nbviewer](https://nbviewer.org/) to display maps.
